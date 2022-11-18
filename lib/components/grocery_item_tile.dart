@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class GroceryItemTile extends StatelessWidget {
   final String itemName;
@@ -12,37 +14,43 @@ class GroceryItemTile extends StatelessWidget {
     required this.itemName,
     required this.itemPrice,
     required this.itemPath,
-    this.color,
+    required this.color,
     required this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(12.0),
+      padding: const EdgeInsets.all(12),
       child: Container(
-        padding: EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: color[100],
           borderRadius: BorderRadius.circular(12),
+          color: color[100],
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            //image
-            Image.asset(
-              itemPath,
-              height: 64,
+            // item image
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40.0),
+              child: Image.asset(
+                itemPath,
+                height: 64,
+              ),
             ),
 
             // item name
+            Text(
+              itemName,
+              style: TextStyle(
+                fontSize: 16,
+              ),
+            ),
 
-            Text(itemName),
-
-            //price + button
             MaterialButton(
-              onPressed: () {},
-              color: color[800],
+              onPressed: onPressed,
+              color: color,
               child: Text(
                 '\$' + itemPrice,
                 style: TextStyle(
@@ -50,7 +58,7 @@ class GroceryItemTile extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
+            )
           ],
         ),
       ),
